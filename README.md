@@ -1,33 +1,33 @@
 
 
 ```markdown
-# DBForge - 企业级数据库解决方案
+# DBForge - Enterprise Database Solution
 
 ![DBForge Logo](https://your-image-url-here)
 
-## 简介
+## Introduction
 
-DBForge 是一款企业级端到端的数据库解决方案，覆盖了整个软件开发周期。它支持软件开发中的不同成员，包括 DBA、开发人员、测试人员、业务分析师和项目经理。该工具旨在简化数据库管理和提高团队协作效率。
+DBForge is an enterprise-grade end-to-end database solution that covers the entire software development lifecycle. It supports different members in software development, including DBAs, developers, testers, business analysts, and project managers. The tool aims to simplify database management and enhance team collaboration efficiency.
 
-## 功能特点
+## Key Features
 
-- **SQL脚本自动生成：** 节省时间，提高开发效率，支持各种主流关系型数据库。
-- **SQL脚本语法与安全性校验：** 确保生成的 SQL 脚本符合语法规范和安全性标准。
-- **SQL脚本间依赖分析：** 识别和管理 SQL 脚本之间的依赖关系，确保正确的执行顺序。
-- **数据库Schema比较：** 快速比较数据库架构，支持版本控制和变更管理。
-- **测试数据生成：** 自动生成测试数据，简化测试环境的准备工作。
-- **数据库脚本迁移：** 简化数据库升级和迁移过程，确保平滑过渡。
-- **自动报告：** 生成详细的报告，提供有关数据库变更和执行结果的可视化信息。
+- **Auto SQL Script Generation:** Save time, improve development efficiency, and support various mainstream relational databases.
+- **SQL Script Syntax and Security Validation:** Ensure generated SQL scripts comply with syntax standards and security requirements.
+- **SQL Script Dependency Analysis:** Identify and manage dependencies between SQL scripts to ensure the correct execution order.
+- **Database Schema Comparison:** Quickly compare database schemas, supporting version control and change management.
+- **Test Data Generation:** Automatically generate test data to simplify test environment preparation.
+- **Database Script Migration:** Simplify database upgrade and migration processes to ensure a smooth transition.
+- **Automated Reporting:** Generate detailed reports providing visual information about database changes and execution results.
 
-## 快速开始
+## Quick Start
 
-1. **安装：** 使用以下命令安装 DBForge：
+1. **Installation:** Install DBForge using the following command:
 
    ```bash
    npm install dbforge
    ```
 
-2. **配置：** 在配置文件中指定数据库连接信息和其他参数。
+2. **Configuration:** Specify database connection information and other parameters in the configuration file.
 
    ```json
    {
@@ -39,13 +39,13 @@ DBForge 是一款企业级端到端的数据库解决方案，覆盖了整个软
    }
    ```
 
-3. **使用：** 运行以下命令生成 SQL 脚本并执行：
+3. **Usage:** Run the following command to generate SQL scripts and execute them:
 
    ```bash
    dbforge generate
    ```
 
-## 支持的数据库
+## Supported Databases
 
 - MySQL
 - PostgreSQL
@@ -53,11 +53,16 @@ DBForge 是一款企业级端到端的数据库解决方案，覆盖了整个软
 - Oracle
 - ...
 
-## 贡献
+## Examples
 
-欢迎贡献代码、报告问题或提出建议。请阅读 [贡献指南](CONTRIBUTING.md) 以获取更多信息。
+Provide some usage examples to help users better understand how to use the tool.
 
-## 许可证
+## Contribution
 
-该项目基于 [MIT 许可证](LICENSE)。
+Contributions, bug reports, and suggestions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 ```
+
