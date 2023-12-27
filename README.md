@@ -59,10 +59,10 @@ Provide some usage examples to help users better understand how to use the tool.
 
 ## Release Draft Plans
 
-1.0 - 2023-12 - MVP (SQl Validation functions)
-1.1 - 2024-01 - Flyway framework integration
-1.2 - 2024-02 - Notification Service 
-1.3 - 2024-03 - Dependence Analysis Enhancement
+- 1.0 - 2023-12 - MVP (SQl Validation functions)
+- 1.1 - 2024-01 - Flyway framework integration
+- 1.2 - 2024-02 - Notification Service 
+- 1.3 - 2024-03 - Dependence Analysis Enhancement
 
 ## Contribution
 
