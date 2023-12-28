@@ -19,22 +19,22 @@ public class RollbackGenerator {
 
     private static List<String> executedDDLStatements = new ArrayList<>();
 
-    public static void main(String[] args) {
-        String originalAlterTableAddColumnSql = "ALTER TABLE your_table ADD COLUMN new_column INT";
-        // Add more test cases...
-
-        try {
-            String rollbackAlterTableAddColumnSql = generateRollbackSQL(originalAlterTableAddColumnSql);
-            // Add more test cases...
-
-            System.out.println("Original SQL: " + originalAlterTableAddColumnSql);
-            System.out.println("Rollback SQL: " + rollbackAlterTableAddColumnSql);
-            // Add more print statements for other test cases...
-
-        } catch (JSQLParserException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        String originalAlterTableAddColumnSql = "ALTER TABLE your_table ADD COLUMN new_column INT";
+//        // Add more test cases...
+//
+//        try {
+//            String rollbackAlterTableAddColumnSql = generateRollbackSQL(originalAlterTableAddColumnSql);
+//            // Add more test cases...
+//
+//            System.out.println("Original SQL: " + originalAlterTableAddColumnSql);
+//            System.out.println("Rollback SQL: " + rollbackAlterTableAddColumnSql);
+//            // Add more print statements for other test cases...
+//
+//        } catch (JSQLParserException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private static String generateRollbackSQL(String originalSql) throws JSQLParserException {
         Statement statement = CCJSqlParserUtil.parse(originalSql);
@@ -264,6 +264,56 @@ public class RollbackGenerator {
         return "original_" + column.getColumnName();
     }
 
+
+
+    /*
+    * Test Method for RollbackGenerator
+    *
+    *
+    *
+    * */
+    public static void main(String[] args) throws JSQLParserException {
+        // Test cases for "ADD COLUMN"
+        testAlterStatement("ALTER TABLE table_name ADD COLUMN new_column_name",
+                "ALTER TABLE table_name DROP COLUMN new_column_name");
+
+        // Test cases for "DROP COLUMN"
+        testAlterStatement("ALTER TABLE table_name DROP COLUMN existing_column_name",
+                "ALTER TABLE table_name ADD COLUMN existing_column_name");
+
+        // Test cases for "MODIFY COLUMN"
+        testAlterStatement("ALTER TABLE table_name MODIFY COLUMN column_name new_data_type",
+                "ALTER TABLE table_name MODIFY COLUMN column_name old_data_type");
+
+        // Test cases for "RENAME COLUMN"
+        testAlterStatement("ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name",
+                "ALTER TABLE table_name RENAME COLUMN new_column_name TO old_column_name");
+
+        // Test cases for "ADD CONSTRAINT"
+        testAlterStatement("ALTER TABLE table_name ADD CONSTRAINT constraint_name UNIQUE (column_name)",
+                "ALTER TABLE table_name DROP CONSTRAINT constraint_name");
+
+        // Unsupported ALTER type
+        testAlterStatement("ALTER TABLE table_name unsupported_operation",
+                "Unsupported ALTER type for rollback");
+    }
+
+    private static void testAlterStatement(String originalSql, String expectedRollbackSql) throws JSQLParserException {
+        Statement statement = CCJSqlParserUtil.parse(originalSql);
+        Alter alterStatement =  (Alter)statement;
+        String generatedRollbackSql = getRollbackForAlterType(alterStatement);
+
+        if (!generatedRollbackSql.equals(expectedRollbackSql)) {
+            throw new RuntimeException("Mismatch in generated rollback SQL for: \n"
+                    + "Original SQL: " + originalSql + "\n"
+                    + "Expected Rollback SQL: " + expectedRollbackSql + "\n"
+                    + "Generated Rollback SQL: " + generatedRollbackSql);
+        }
+
+        System.out.println("Test passed for: " + originalSql);
+        System.out.println("Generated Rollback SQL: " + generatedRollbackSql);
+        System.out.println("--------------------------------------------");
+    }
 
 
 
