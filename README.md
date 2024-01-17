@@ -1,13 +1,13 @@
 
 
 ```markdown
-# DBForge - Enterprise Database Solution
+# DBMastermind-Suite - Enterprise Database Solution
 
-![DBForge Logo](https://your-image-url-here)
+![DBMastermind-Suite Logo](https://your-image-url-here)
 
 ## Introduction
 
-DBForge is an enterprise-grade end-to-end database solution that covers the entire software development lifecycle. It supports different members in software development, including DBAs, developers, testers, business analysts, and project managers. The tool aims to simplify database management and enhance team collaboration efficiency.
+DBMastermind-Suite is an enterprise-grade end-to-end database solution that covers the entire software development lifecycle. It supports different members in software development, including DBAs, developers, testers, business analysts, and project managers. The tool aims to simplify database management and enhance team collaboration efficiency.
 
 ## Key Features
 
@@ -21,10 +21,10 @@ DBForge is an enterprise-grade end-to-end database solution that covers the enti
 
 ## Quick Start
 
-1. **Installation:** Install DBForge using the following command:
+1. **Installation:** Install DBMastermind-Suite using the following command:
 
    ```bash
-   npm install dbforge
+   npm install DBMastermind-Suite
    ```
 
 2. **Configuration:** Specify database connection information and other parameters in the configuration file.
@@ -42,7 +42,7 @@ DBForge is an enterprise-grade end-to-end database solution that covers the enti
 3. **Usage:** Run the following command to generate SQL scripts and execute them:
 
    ```bash
-   dbforge generate
+   DBMastermind-Suite generate
    ```
 
 ## Supported Databases
