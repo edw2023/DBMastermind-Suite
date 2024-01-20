@@ -1,84 +1,63 @@
 package com.pw.dcp.utils;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SchemaCompareUtil {
 
-    private static final String JDBC_URL = "jdbc:oracle:thin:@your_oracle_host:your_oracle_port:your_sid";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
+    public static class TableSchema {
+        private String tableName;
+        private List<ColumnSchema> columns;
 
-    public static void main(String[] args) {
-        compareOracleSchemas("source_schema", "target_schema");
-    }
+        public TableSchema(String tableName, List<ColumnSchema> columns) {
+            this.tableName = tableName;
+            this.columns = columns;
+        }
 
-    public static void compareOracleSchemas(String sourceSchema, String targetSchema) {
-        try (Connection sourceConnection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
-             Connection targetConnection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD)) {
+        public String getTableName() {
+            return tableName;
+        }
 
-            List<SchemaCompareUtil.TableSchema> sourceTables = getTablesMetadata(sourceConnection, sourceSchema);
-            List<SchemaCompareUtil.TableSchema> targetTables = getTablesMetadata(targetConnection, targetSchema);
-
-            compareTables(sourceTables, targetTables);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        public List<ColumnSchema> getColumns() {
+            return columns;
         }
     }
 
-    private static List<SchemaCompareUtil.TableSchema> getTablesMetadata(Connection connection, String schema) throws SQLException {
-        List<SchemaCompareUtil.TableSchema> tables = new ArrayList<>();
+    public static class ColumnSchema {
+        private String columnName;
+        private String dataType;
 
-        try (ResultSet resultSet = connection.getMetaData().getTables(null, schema, null, new String[]{"TABLE"})) {
-            while (resultSet.next()) {
-                String tableName = resultSet.getString("TABLE_NAME");
-                List<SchemaCompareUtil.ColumnSchema> columns = getColumnsMetadata(connection, schema, tableName);
-                SchemaCompareUtil.TableSchema tableSchema = new SchemaCompareUtil.TableSchema(tableName, columns);
-                tables.add(tableSchema);
-            }
+        public ColumnSchema(String columnName, String dataType) {
+            this.columnName = columnName;
+            this.dataType = dataType;
         }
 
-        return tables;
-    }
-
-    private static List<SchemaCompareUtil.ColumnSchema> getColumnsMetadata(Connection connection, String schema, String tableName) throws SQLException {
-        List<SchemaCompareUtil.ColumnSchema> columns = new ArrayList<>();
-
-        try (ResultSet resultSet = connection.getMetaData().getColumns(null, schema, tableName, null)) {
-            while (resultSet.next()) {
-                String columnName = resultSet.getString("COLUMN_NAME");
-                String dataType = resultSet.getString("TYPE_NAME");
-                SchemaCompareUtil.ColumnSchema columnSchema = new SchemaCompareUtil.ColumnSchema(columnName, dataType);
-                columns.add(columnSchema);
-            }
+        public String getColumnName() {
+            return columnName;
         }
 
-        return columns;
-    }
-
-    private static void compareTables(List<SchemaCompareUtil.TableSchema> sourceTables, List<SchemaCompareUtil.TableSchema> targetTables) {
-        for (SchemaCompareUtil.TableSchema sourceTable : sourceTables) {
-            SchemaCompareUtil.TableSchema matchingTargetTable = findMatchingTable(sourceTable, targetTables);
-            if (matchingTargetTable != null) {
-                SchemaCompareUtil.compareTables(sourceTable, matchingTargetTable);
-            } else {
-                System.out.println("Table " + sourceTable.getTableName() + " not found in target schema");
-            }
-        }
-
-        // Check for tables in target schema that are not present in source schema
-        for (SchemaCompareUtil.TableSchema targetTable : targetTables) {
-            SchemaCompareUtil.TableSchema matchingSourceTable = findMatchingTable(targetTable, sourceTables);
-            if (matchingSourceTable == null) {
-                System.out.println("Table " + targetTable.getTableName() + " not found in source schema");
-            }
+        public String getDataType() {
+            return dataType;
         }
     }
 
-    private static SchemaCompareUtil.TableSchema findMatchingTable(SchemaCompareUtil.TableSchema table, List<SchemaCompareUtil.TableSchema> tables) {
-        return tables.stream().filter(t -> t.getTableName().equalsIgnoreCase(table.getTableName())).findFirst().orElse(null);
+    public static void compareTables(TableSchema sourceTable, TableSchema targetTable) {
+        // Compare table name
+        compareProperty("Table Name", sourceTable.getTableName(), targetTable.getTableName());
+
+        // Compare columns
+        List<ColumnSchema> sourceColumns = sourceTable.getColumns();
+        List<ColumnSchema> targetColumns = targetTable.getColumns();
+        compareColumns(sourceColumns, targetColumns);
+
+        // Add more comparisons as needed
+    }
+
+    private static void compareColumns(List<ColumnSchema> sourceColumns, List<ColumnSchema> targetColumns) {
+    }
+
+    private static void compareProperty(String propertyName, String sourceValue, String targetValue) {
+        if (!sourceValue.equals(targetValue)) {
+            System.out.println(propertyName + " does not match: Source - " + sourceValue + ", Target - " + targetValue);
+        }
     }
 }
-
