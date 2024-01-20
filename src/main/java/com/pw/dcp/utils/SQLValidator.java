@@ -78,9 +78,6 @@ public class SQLValidator {
     private void checkSensitiveInfo(String sql) {
         checkKeywords(sql, SENSITIVE_PATTERN, FORBIDDEN);
     }
-    private void checkSqlInjection(String sql) {
-        checkKeywords(sql, SQL_INJECTION_PATTERN, FORBIDDEN);
-    }
 
     private static boolean checkTableName(String tableName){
         // 检查表名是否为空
