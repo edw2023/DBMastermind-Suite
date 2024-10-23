@@ -4,13 +4,6 @@ import java.sql.*;
 
 public class DatabaseSchemaComparator {
 
-    private static final String JDBC_URL_DB1 = "jdbc:your_database1_url";
-    private static final String USER_DB1 = "your_database1_username";
-    private static final String PASSWORD_DB1 = "your_database1_password";
-
-    private static final String JDBC_URL_DB2 = "jdbc:your_database2_url";
-    private static final String USER_DB2 = "your_database2_username";
-    private static final String PASSWORD_DB2 = "your_database2_password";
 
     public static void compareSchemas(String usernameDB1, String usernameDB2) {
         try (Connection connectionDB1 = DriverManager.getConnection(JDBC_URL_DB1, USER_DB1, PASSWORD_DB1);
