@@ -1,14 +1,18 @@
 package com.pw.dcp.utils;
 
+import com.pw.dcp.model.DatabaseVO;
+
 import java.sql.*;
 
 public class DatabaseSchemaComparator {
 
 
-    public static void compareSchemas(String usernameDB1, String usernameDB2) {
-        try (Connection connectionDB1 = DriverManager.getConnection(JDBC_URL_DB1, USER_DB1, PASSWORD_DB1);
-             Connection connectionDB2 = DriverManager.getConnection(JDBC_URL_DB2, USER_DB2, PASSWORD_DB2)) {
+    public static void compareSchemas(DatabaseVO database1, DatabaseVO database2) {
+        try (Connection connectionDB1 = DriverManager.getConnection(database1.getJdbcUrl(), database1.getDbName(), database1.getPassword());
+             Connection connectionDB2 = DriverManager.getConnection(database2.getJdbcUrl(), database2.getDbName(), database2.getPassword())) {
 
+            String usernameDB1 = database1.getUserName();
+            String usernameDB2 = database2.getUserName();
             compareTables(connectionDB1, usernameDB1, connectionDB2, usernameDB2);
             compareTriggers(connectionDB1, usernameDB1, connectionDB2, usernameDB2);
             compareSequences(connectionDB1, usernameDB1, connectionDB2, usernameDB2);
