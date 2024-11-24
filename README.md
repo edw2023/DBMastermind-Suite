@@ -1,75 +1,48 @@
+# SchemaDiff
 
+**SchemaDiff** is a powerful tool designed to compare and analyze the differences between database schemas, making it easier to manage and migrate databases in various environments. It supports different types of databases including Oracle, MySQL, PostgreSQL, and more.
 
-```markdown
-# DBMastermind-Suite - Enterprise Database Solution
+## Features
 
-![DBMastermind-Suite Logo](https://your-image-url-here)
-
-## Introduction
-
-DBMastermind-Suite is an enterprise-grade end-to-end database solution that covers the entire software development lifecycle. It supports different members in software development, including DBAs, developers, testers, business analysts, and project managers. The tool aims to simplify database management and enhance team collaboration efficiency.
-
-## Key Features
-
-- **Auto SQL Script Generation:** Save time, improve development efficiency, and support various mainstream relational databases.
-- **SQL Script Syntax and Security Validation:** Ensure generated SQL scripts comply with syntax standards and security requirements.
-- **SQL Script Dependency Analysis:** Identify and manage dependencies between SQL scripts to ensure the correct execution order.
-- **Database Schema Comparison:** Quickly compare database schemas, supporting version control and change management.
-- **Test Data Generation:** Automatically generate test data to simplify test environment preparation.
-- **Database Script Migration:** Simplify database upgrade and migration processes to ensure a smooth transition.
-- **Automated Reporting:** Generate detailed reports providing visual information about database changes and execution results.
-
-## Quick Start
-
-1. **Installation:** Install DBMastermind-Suite using the following command:
-
-   ```bash
-   npm install DBMastermind-Suite
-   ```
-
-2. **Configuration:** Specify database connection information and other parameters in the configuration file.
-
-   ```json
-   {
-     "database": "your_database",
-     "username": "your_username",
-     "password": "your_password",
-     "host": "your_host",
-     "port": 3306
-   }
-   ```
-
-3. **Usage:** Run the following command to generate SQL scripts and execute them:
-
-   ```bash
-   DBMastermind-Suite generate
-   ```
+- **Cross-Platform Comparison**: Compare database schemas across different database types (e.g., Oracle to MySQL, PostgreSQL to MySQL, etc.).
+- **Comprehensive Diffing**: Supports table structures, indexes, stored procedures, sequences, triggers, and more.
+- **User-Friendly Interface**: Easy to use and integrates well with existing workflows.
+- **Efficient Reports**: Generate detailed reports on schema differences to simplify migration or database synchronization.
+- **Customizable**: Highly configurable to suit various project needs and database configurations.
 
 ## Supported Databases
 
+- Oracle
 - MySQL
 - PostgreSQL
 - SQL Server
-- Oracle
-- ...
+- DB2
+- Sybase
 
-## Examples
+## Installation
 
-Provide some usage examples to help users better understand how to use the tool.
+### Requirements
 
-## Release Draft Plans
+- Java 8 or later
+- Maven
 
-- 1.0 - 2023-12 - MVP (SQl Validation functions)
-- 1.1 - 2024-01 - Flyway framework integration
-- 1.2 - 2024-02 - Notification Service 
-- 1.3 - 2024-03 - Dependence Analysis Enhancement
+### Steps to Install
 
-## Contribution
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/SchemaDiff.git
 
-Contributions, bug reports, and suggestions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) for more information.
+2. Navigate to the project directory:
+   ```bash
+   cd SchemaDiff
 
-## License
+3. Build the project using Maven:
+   ```bash
+   mvn clean install
 
-This project is licensed under the [MIT License](LICENSE).
-```
+### Usage
+
+   To compare two database schemas, run the following command:
+   ```bash
+   java -jar SchemaDiff.jar <database1_connection_string> <database2_connection_string>
 
